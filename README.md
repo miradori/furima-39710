@@ -28,7 +28,7 @@
 | condition_id      | integer      | null: false                    |
 | burden_id         | integer      | null: false                    |
 | area_id           | integer      | null: false                    |
-| day_id            | integer      | null: false                    |
+| delivery_id       | integer      | null: false                    |
 | price             | integer      | null: false                    |
 | user              | references   | null: false, foreign_key: true |
 
@@ -79,10 +79,10 @@
 | Column            | Type         | Options                        |
 | ------------------| ------------ | ------------------------------ |
 | post_code         | string       | null: false                    |
-| prefectures_id    | integer      | null: false                    |
+| area_id           | integer      | null: false                    |
 | municipalities    | string       | null: false                    |
 | address           | string       | null: false                    |
-| building          | string       | null: true                     |
+| building          | string       |                                |
 | telephone_number  | string       | null: false                    |
 | purchase          | references   | null: false, foreign_key: true |
 
