@@ -179,11 +179,19 @@ Devise.setup do |config|
   # ==> Configuration for :validatable
   # Range for password length.
   config.password_length = 6..128
+  # config.password_complexity = { digit: /\d/, lower: /[a-z]/ }
 
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly
   # to give user feedback and not to assert the e-mail validity.
   config.email_regexp = /\A[^@\s]+@[^@\s]+\z/
+  # config.password_regexp = /\A(?=.*[a-zA-Z])(?=.*[0-9])/
+  # config.password_complexity = {
+  #   digit: /\d/,             # 数字が含まれていること
+  #   lower: /[a-z]/,          # 小文字が含まれていること
+  #   # upper: /[A-Z]/,          # 大文字が含まれていること
+  #   # special: /[^a-zA-Z\d]/,  # アルファベットと数字以外の文字が含まれていること
+  # }
 
   # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this
