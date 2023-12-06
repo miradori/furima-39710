@@ -21,7 +21,7 @@
         <p>
           クリックしてファイルをアップロード
         </p>
-        <%= f.file_field :hoge, id:"item-image" %>
+        <%= f.file_field :image, id:"item-image" %>
       </div>
     </div>
     <%# /商品画像 %>
@@ -96,10 +96,11 @@
         <div class="price-content">
           <div class="price-text">
             <span>価格</span>
+            <%# <script src="new.js"></script> %>
             <span class="indispensable">必須</span>
           </div>
           <span class="sell-yen">¥</span>
-          <%= f.text_field :hoge, class:"price-input", id:"item-price", placeholder:"例）300" %>
+          <%= f.text_field :price, class:"price-input", id:"item-price", placeholder:"例）300" %>
         </div>
         <div class="price-content">
           <span>販売手数料 (10%)</span>
@@ -113,6 +114,7 @@
             <span id='profit'></span>円
           </span>
         </div>
+        <script> src="new.js" </script>
       </div>
     </div>
     <%# /販売価格 %>
