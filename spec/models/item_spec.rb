@@ -91,6 +91,11 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price は¥300から¥9,999,999の範囲内で、半角数値のみが有効です")
       end
+      it 'priceが半角数字以外が含まれていると出品できない' do
+        @item.price = 'a'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price は¥300から¥9,999,999の範囲内で、半角数値のみが有効です")
+      end
       it 'userが空では登録できない' do
         @item.user = nil
         @item.valid?
