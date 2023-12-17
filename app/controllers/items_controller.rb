@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit]
+  before_action :authenticate_user!, only: [:new, :edit, :update]
 
   def index
     @items = Item.order("created_at DESC").all
@@ -24,11 +24,24 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    if @item.user_id != current_user.id #&& @item.sold?
+      redirect_to root_path, alert: "You are not authorized to edit this item."
+    end
   end
 
-  # def update
-  #   @item = Item.find(params[:id])
-  # end
+  def update
+    @item = Item.find(params[:id])
+    if @item.user_id != current_user.id #&& @item.sold?
+      redirect_to root_path
+      return
+    end
+
+    if @item.update(item_params)
+      redirect_to item_path(@item.id)
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
 
   private
 
