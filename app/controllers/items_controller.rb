@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit, :update]
-  before_action :find_item, only: [:show, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  before_action :find_item, only: [:show, :edit, :update, :destroy]
 
   def index
     @items = Item.order("created_at DESC").all
@@ -35,6 +35,15 @@ class ItemsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    if @item.user_id != current_user.id #&& @item.sold?
+      @item.destroy
+    else
+      redirect_to root_path, alert: "You are not authorized to destroy this item."
+    end
+    redirect_to root_path
   end
 
   private
