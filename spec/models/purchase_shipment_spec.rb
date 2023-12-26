@@ -3,8 +3,10 @@ require 'rails_helper'
 RSpec.describe PurchaseShipment, type: :model do
   before do
     @user = FactoryBot.create(:user)
-    @item = FactoryBot.create(:item)
-    @donation_address = FactoryBot.build(:donation_address, user_id: user.id)
+    @item = FactoryBot.build(:item)
+    @item.image = fixture_file_upload('app/assets/images/test_image.jpeg')
+    @item.save
+    @purchase_shipment = FactoryBot.build(:purchase_shipment, user_id: @user.id, item_id: @item.id)
   end
 
   context '内容に問題ない場合' do
