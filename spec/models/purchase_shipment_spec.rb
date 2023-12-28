@@ -35,7 +35,7 @@ RSpec.describe PurchaseShipment, type: :model do
       expect(@purchase_shipment.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
     end
     it 'area_idが---では登録できない' do
-      @purchase_shipment.area_id = 0
+      @purchase_shipment.area_id = 1
       @purchase_shipment.valid?
       expect(@purchase_shipment.errors.full_messages).to include("Area can't be blank")
     end
