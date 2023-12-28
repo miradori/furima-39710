@@ -34,8 +34,8 @@ RSpec.describe PurchaseShipment, type: :model do
       @purchase_shipment.valid?
       expect(@purchase_shipment.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
     end
-    it 'area_idを選択していないと保存できないこと' do
-      @purchase_shipment.area_id = nil
+    it 'area_idが---では登録できない' do
+      @purchase_shipment.area_id = 0
       @purchase_shipment.valid?
       expect(@purchase_shipment.errors.full_messages).to include("Area can't be blank")
     end
@@ -54,10 +54,15 @@ RSpec.describe PurchaseShipment, type: :model do
       @purchase_shipment.valid?
       expect(@purchase_shipment.errors.full_messages).to include("Telephone number can't be blank")
     end
-    it 'telephone_numberが10桁以上11桁以内の半角数値でないと保存できないこと' do
+    it 'telephone_numberが9桁以下の場合保存できないこと' do
       @purchase_shipment.telephone_number = '123456789'
       @purchase_shipment.valid?
       expect(@purchase_shipment.errors.full_messages).to include("Telephone number is too short (minimum is 10 characters)")
+    end
+    it 'telephone_numberが12桁以上の場合保存できないこと' do
+      @purchase_shipment.telephone_number = '012345678912'
+      @purchase_shipment.valid?
+      expect(@purchase_shipment.errors.full_messages).to include("Telephone number is too long (maximum is 11 characters)")
     end
     it 'telephone_numberが数字でないと保存できないこと' do
       @purchase_shipment.telephone_number = 'abcdefghijk'

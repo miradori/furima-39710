@@ -4,10 +4,6 @@ class Item < ApplicationRecord
   has_one :purchase
   has_one_attached :image
 
-  # def purchased?
-  #   purchases.exists?
-  # end
-
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category
   belongs_to_active_hash :condition
@@ -24,5 +20,4 @@ class Item < ApplicationRecord
   validates :area_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
   validates :delivery_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, only_integer: true, message: "は¥300から¥9,999,999の範囲内で、半角数値のみが有効です"}
-  # validates :user_id, presence: true
 end
