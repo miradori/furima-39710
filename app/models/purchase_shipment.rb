@@ -10,12 +10,12 @@ class PurchaseShipment
     validates :area_id, numericality: {other_than: 0, message: "can't be blank"}
     validates :municipalities
     validates :address
-    validates :telephone_number
+    validates :telephone_number, numericality: { only_integer: true }, length: { in: 10..11 }
   end
-  
 
   def save
     purchase = Purchase.create(user_id: user_id, item_id: item_id)
     Shipment.create(post_code: post_code, area_id: area_id, municipalities: municipalities, address: address, building: building, telephone_number: telephone_number, purchase_id: purchase.id)
   end
+
 end
