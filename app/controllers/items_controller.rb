@@ -20,12 +20,12 @@ class ItemsController < ApplicationController
   end
 
   def show
-    
+
   end
 
   def edit
-    if @item.user_id != current_user.id #&& @item.sold?
-      redirect_to root_path, alert: "You are not authorized to edit this item."
+    if @item.user_id != current_user.id || @item.purchase
+      redirect_to root_path, alert: "This item has already been sold."
     end
   end
 
@@ -38,7 +38,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if @item.user_id != current_user.id #&& @item.sold?
+    if @item.user_id != current_user.id
       @item.destroy
     else
       redirect_to root_path, alert: "You are not authorized to destroy this item."
