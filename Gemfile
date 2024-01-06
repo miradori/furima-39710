@@ -88,3 +88,4 @@ gem 'active_hash'
 gem 'activestorage-validator'
 gem 'payjp'
 gem 'gon'
+gem "aws-sdk-s3", require: false
