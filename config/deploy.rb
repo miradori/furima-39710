@@ -5,7 +5,7 @@ lock '3.18.0'
 set :application, 'furima-39710'
 
 # どのリポジトリからアプリをpullするかを指定する
-set :repo_url,  'git@github.com:miradori/furima-39170.git'
+set :repo_url,  'git@github.com:miradori/furima-39710.git'
 set :branch, 'main'
 
 # バージョンが変わっても共通で参照するディレクトリを指定
@@ -16,7 +16,7 @@ set :rbenv_ruby, '3.2.0'
 
 # どの公開鍵を利用してデプロイするか
 set :ssh_options, auth_methods: ['publickey'],
-                                  keys: ['~/.ssh/AWSECkey.pem'] 
+                                  keys: ['~/.ssh/AWSECkey.pem']
 
 # プロセス番号を記載したファイルの場所
 set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }
